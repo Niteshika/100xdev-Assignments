@@ -1,0 +1,92 @@
+BASIC:
+
+QUES1: Sum values in object arrays
+    - Input:
+        { food: [10, 20, 30], travel: [5, 15], bills: [40, 60] }
+    - Output:
+        { food: 60, travel: 20, bills: 100 }
+SOL: 
+    const input = { food: [10, 20, 30], travel: [5, 15], bills: [40, 60] };
+    const output = {food: input.food.reduce((acc,cv) =>{return acc+cv;},0 ),
+                    travel: input.travel.reduce((acc,cv)=>{ return acc+cv; },0),
+                    bills: input.bills.reduce((acc,cv)=>{ return acc+cv; },0)
+                   };
+    console.log(output);      
+
+QUES2: Count word occurrences in array
+    - Input:
+        ["apple", "banana", "apple", "orange", "banana", "apple"]
+    - Output:
+        { apple: 3, banana: 2, orange: 1 }
+SOL:
+    const Input= ["apple", "banana", "apple", "orange", "banana", "apple"];
+    const output= Input.reduce((acc,word)=>{
+        acc[word] = (acc[word] || 0)+1;
+        return acc;
+    },{});
+    console.log(output);
+
+QUES3: Swap keys and values of object
+    - Input:
+        { a: "x", b: "y", c: "z" }
+    - Output:
+        { x: "a", y: "b", z: "c" }
+SOL: 
+    1-->
+    const input = { a: "x", b: "y", c: "z" };
+    const output = {};
+    for(const value in input){
+        output[input[value]] = value;
+    };
+    console.log(output);
+    2-->
+    const input = { a: "x", b: "y", c: "z" };
+    const output = Object.keys(input).reduce((acc,value)=>{
+        acc[input[value]] = value;
+        return acc;
+    },{});
+    console.log(output);
+    3-->//Object.entries return an array of array of key value pairs [[k,v],[k,v]....]
+       //Object.fromEntries cnvts those arr of arr to an object.
+    const input = { a: "x", b: "y", c: "z" };
+    const output = Object.fromEntries(Object.entries(input).map(([k,v])=>{
+       return [v,k];
+    }));
+    console.log(output);
+
+QUES4: Find the largest value key
+    - Input:
+        { a: 10, b: 50, c: 20 }
+    - Output:
+        b
+SOL: 
+    const input = { a: 10, b: 50, c: 20 };
+    const output = Object.keys(input).reduce((acc,cv)=>{
+        if(input[acc]>=input[cv]){
+            return acc;
+        }else if(input[acc]<input[cv]){return cv}
+    });
+    console.log(output);
+
+QUES5: Flatten object of arrays into one array
+    - Input:
+        { fruits: ["apple", "banana"], veggies: ["carrot", "pea"] }
+    - Output:
+        ["apple", "banana", "carrot", "pea"]
+SOL:
+    const input ={ fruits: ["apple", "banana"], veggies: ["carrot", "pea"] };
+    const output = Object.values(input).flat();
+    console.log(output);
+
+QUES6: Group people by city
+    - Input:
+        [
+          { name: "A", city: "Delhi" },
+          { name: "B", city: "Mumbai" },
+          { name: "C", city: "Delhi" }
+        ]
+    - Output:
+        { Delhi: ["A", "C"], Mumbai: ["B"] }
+SOL:
+
+        
